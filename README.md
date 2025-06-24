@@ -34,41 +34,64 @@
 
 
 
-### 디펜던시 관리자 (pip)
+## 디펜던시 관리자 (pip)
 
 [Poetry](https://github.com/python-poetry/poetry)나 [PDM](https://github.com/pdm-project/pdm)가 더 나은 것 같은데, 일단은 추가 설치없이 바로 사용할 수 있는 [pip](https://github.com/pypa/pip)로 사용해보자
 
-##### pytest 설치
+먼저 pip만을 사용하는 것에 비해 향샹된 기능을 제공하는 pip-tools를 설치한다.
+
+
+
+#### `pip-tools`로 파이썬 의존성 관리하기
+
+#### 1\. `pip-tools` 설치
+
+먼저, `pip-tools`를 개발 환경의 가상 환경(.venv)에 설치함.
 
 ```sh
-pip install pytest
+pip install pip-tools
 ```
 
-.venv 가상환경에 해당 라이브러리가 설치된다.
+#### 2\. `requirements.in` 파일 생성
 
-##### 디펜던시 기록
+프로젝트의 \*\*최상위 종속성(Top-level dependencies)\*\*만 `requirements.in` 파일에 기록하면된다. 이곳에 직접 설치하고 싶은 패키지들만 나열하면 됨.
 
 ```sh
-pip freeze > requirements.txt
+# requirements.in
+pytest
+black
 ```
 
-pytest 설치로인한 연관 디펜던시들의 라이브러리 이름, 버전 정보를 파일로 저장한다.
+#### 3\. `requirements.txt` 파일 생성
 
-pytest 최초 설치후 디펜던시 기록을 했을 때, 나는 아래와 같이 저장되었다.
+다음 명령은 `requirements.in` 파일을 기반으로 **모든 하위 종속성까지 포함하고 버전을 고정한** `requirements.txt` 파일을 자동으로 생성한다.
 
-```
-colorama==0.4.6
-iniconfig==2.1.0
-packaging==25.0
-pluggy==1.6.0
-Pygments==2.19.2
-pytest==8.4.1
-
+```sh
+pip-compile requirements.in
 ```
 
+#### 4\. 라이브러리 설치
+
+생성된 `requirements.txt` 파일을 이용해 필요한 모든 라이브러리를 가상 환경에 설치함.
+
+```sh
+pip install -r requirements.txt
+```
+
+#### 5\. 라이브러리 업데이트
+
+기존 라이브러리를 최신 호환 버전으로 업데이트하려면, 다음 두 명령을 순서대로 실행함.
+
+```sh
+pip-compile requirements.in  # requirements.txt를 최신 버전으로 업데이트
+pip install -r requirements.txt # 가상 환경의 라이브러리를 업데이트된 requirements.txt에 맞춰 설치/업데이트
+```
 
 
-### 단위 테스트 프레임워크
+
+
+
+## 단위 테스트 프레임워크
 
 * pytest
   * https://github.com/pytest-dev/pytest
@@ -79,19 +102,14 @@ pytest==8.4.1
 
 
 
-### 코드 포맷터
+## 코드 포맷터
 
-* black
+* Black
   * https://github.com/psf/black
 
-[Google Java Format](https://github.com/google/google-java-format) 같이 사용자 커스터마이징 없이 알아서 해주는 강제 포멧터이다. 👍
+[Google Java Format](https://github.com/google/google-java-format) 처럼 사용자 커스터마이징 없이 알아서 해주는 강제 포멧터이다. 👍
 
-이것도 pip로 설치해주고 requirements.txt에 디펜던시를 새로 기록했다.
-
-```sh
-pip install black
-pip freeze > requirements.txt
-```
+이것도 위의 pip-tools 설명 부분에서  requirements.in 설정을 통해 설치가 되었다.
 
 PyCharm에서도 그냥 저장시 액션에 등록해두면 바로 사용이 가능함. 
 

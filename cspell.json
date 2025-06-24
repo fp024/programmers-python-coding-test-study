@@ -6,10 +6,14 @@
     "/.vscode/**",
     "/.idea/**",
     "/.gitignore",
+    "/requirements.in",
     "/requirements.txt",
     "/clean-cache-dir.bat"
   ],
-  "words": [],
+  "words": [
+    "pytest",
+    "venv"
+  ],
   "ignoreWords": [],
   "import": []
 }
