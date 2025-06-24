@@ -20,7 +20,17 @@
 * PyCharm
   * https://www.jetbrains.com/pycharm/
 * VSCode
-  * ...
+  
+  * https://code.visualstudio.com/
+  
+  > 뭔가 지원이 좋은것같다. 😊,  Python 확장하고, Black만 설치하면 잘됨..👍
+  >
+  > * Python
+  >   * https://github.com/Microsoft/vscode-python
+  > * Black Formatter
+  >   * https://github.com/microsoft/vscode-black-formatter
+
+
 
 
 
