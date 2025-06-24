@@ -17,7 +17,7 @@
 
 ### 개발 도구
 
-* PyCham
+* PyCharm
   * https://www.jetbrains.com/pycharm/
 * VSCode
   * ...
@@ -65,7 +65,7 @@ pytest==8.4.1
 
 파이썬에서는 컨테이너 비교가 언어자체적으로 간단해서.. 매처라이브러리를 따로 설치하지 않아도 될 것 같다.
 
-> **Pytest는 기본 assert 문을 적극적으로 활용하는 것을 강력히 권장한다.**
+> 💡**Pytest는 기본 assert 문을 적극적으로 활용하는 것을 강력히 권장한다.**
 
 
 
@@ -74,7 +74,7 @@ pytest==8.4.1
 * black
   * https://github.com/psf/black
 
-[Google Java Format](https://github.com/google/google-java-format) 같이 사용자 커스터마이징 없이 알아서 해주는 포멧터이다. 
+[Google Java Format](https://github.com/google/google-java-format) 같이 사용자 커스터마이징 없이 알아서 해주는 강제 포멧터이다. 👍
 
 이것도 pip로 설치해주고 requirements.txt에 디펜던시를 새로 기록했다.
 
