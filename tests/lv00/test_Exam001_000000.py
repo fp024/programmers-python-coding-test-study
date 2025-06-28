@@ -11,11 +11,11 @@ def test_get_lotto():
     assert len(lotto) == 6
 
 
-def test_get_lotto__loop_limit_exceeded():
+def test_get_lotto__cannot_select_enough_numbers():
     with pytest.raises(Exception) as exceptionInfo:
-        get_lotto(set(range(1, 45)))
+        get_lotto(set(range(1, 40)))
 
-    assert str(exceptionInfo.value) == "루프 반복 제한 한계 도달"
+    assert str(exceptionInfo.value) == "6개의 숫자를 선택할 수 없음"
 
 
 def test_get_this_week_lotto():
