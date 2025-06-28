@@ -2,6 +2,8 @@ from random import random
 
 
 def get_lotto(prev_set: set):
+    if len(prev_set) >= 45 - 6:
+        raise Exception("6개의 숫자를 선택할 수 없음")
     lotto = set()
     while len(lotto) < 6:
         lotto_number = int(random() * 45) + 1
@@ -9,8 +11,6 @@ def get_lotto(prev_set: set):
             continue
         else:
             lotto.add(lotto_number)
-        if len(prev_set) >= 45 - len(lotto):
-            raise Exception("6개의 숫자를 선택할 수 없음")
     return lotto
 
 
