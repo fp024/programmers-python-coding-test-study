@@ -8,5 +8,8 @@
   "[python]": {
     "editor.tabSize": 4,
     "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "code-runner.executorMap": {
+    "python": ".venv\\Scripts\\python -u",
   }
 }
