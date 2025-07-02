@@ -10,6 +10,7 @@
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "code-runner.executorMap": {
+    // 💡Linux / Mac 환경에서는 경로 구분자를 '/'로 바꿔야함
     "python": ".venv\\Scripts\\python -u",
   }
 }
