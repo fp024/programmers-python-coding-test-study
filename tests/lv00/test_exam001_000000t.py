@@ -1,5 +1,5 @@
 import pytest
-from src.lv00.exam001_000000 import (
+from lv00.exam001_000000t import (
     get_lotto,
     get_this_week_lotto,
     print_this_week_lotto,

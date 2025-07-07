@@ -1,5 +1,5 @@
 import pytest
-from src.lv00.exam000_000000 import solution
+from lv00.exam000_000000t import solution
 
 
 def test_solution__default_test_case_01():
