@@ -1,0 +1,7 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 25.1.0  # Black 최신 버전으로 업데이트
+    hooks:
+      - id: black
+        language_version: python3
+      - id: black-jupyter  # Jupyter 파일도 포매팅

@@ -60,6 +60,8 @@ pip install pip-tools
 # requirements.in
 pytest
 black
+jupyter
+pre-commit
 ```
 
 #### 3\. `requirements.txt` 파일 생성
@@ -87,6 +89,10 @@ pip-compile requirements.in  # requirements.txt를 최신 버전으로 업데이
 pip install -r requirements.txt # 가상 환경의 라이브러리를 업데이트된 requirements.txt에 맞춰 설치/업데이트
 ```
 
+#### 6\. pip 업그레이드
+```sh
+python -m pip install --upgrade pip
+```
 
 
 

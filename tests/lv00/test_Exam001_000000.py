@@ -1,5 +1,5 @@
 import pytest
-from src.lv00.Exam001_000000 import (
+from src.lv00.exam001_000000 import (
     get_lotto,
     get_this_week_lotto,
     print_this_week_lotto,
@@ -12,7 +12,7 @@ def test_get_lotto():
 
 
 def test_get_lotto__cannot_select_enough_numbers():
-    with pytest.raises(Exception) as exceptionInfo:
+    with pytest.raises(ValueError) as exceptionInfo:
         get_lotto(set(range(1, 40)))
 
     assert str(exceptionInfo.value) == "6개의 숫자를 선택할 수 없음"
