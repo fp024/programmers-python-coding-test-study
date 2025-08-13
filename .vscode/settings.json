@@ -14,5 +14,6 @@
   "code-runner.executorMap": {
     // 💡Windows와 Linux/Mac의 path 구분자 문제로, 디렉토리 변경을 직접하도록 설정
     "python": "cd .venv && cd Scripts && python -u",
-  }
+  },
+  "code-runner.saveFileBeforeRun": true
 }
