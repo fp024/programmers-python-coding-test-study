@@ -9,20 +9,15 @@ from collections import deque
 
 def solution(progresses: list[int], speeds: list[int]) -> list[int]:
 
-    deploy_queue = deque()
+    deploy_queue = deque(ceil((100 - p) / s) for p, s in zip(progresses, speeds))
 
-    for i, p in enumerate(progresses):
-        deploy_days = ceil((100 - p) / speeds[i])
-        deploy_queue.append(deploy_days)
-
-    answer = []
+    answer = [1]
     base_deploy = deploy_queue.popleft()
-    answer.append(1)
 
-    while len(deploy_queue) > 0:
+    while deploy_queue:
         next_task_deploy_day = deploy_queue.popleft()
         if base_deploy >= next_task_deploy_day:
-            answer[len(answer) - 1] += 1
+            answer[-1] += 1
         else:
             base_deploy = next_task_deploy_day
             answer.append(1)
