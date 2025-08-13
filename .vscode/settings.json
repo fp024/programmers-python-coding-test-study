@@ -1,7 +1,8 @@
 {
   "python.testing.pytestArgs": [
-    "-s",
-    "tests"
+    "-s", // 💡 테스트 함수 내 print() 출력도 콘솔에 함께 보여줌 (stdout 표시)
+    "-v", // 💡 각 테스트 항목의 이름을 자세히(verbose) 출력 (어떤 테스트가 통과/실패했는지 명확하게 표시됨)
+    "tests" // 💡 테스트가 들어 있는 폴더나 경로 지정 (여기서는 'tests/' 디렉터리 내 테스트 실행)
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
