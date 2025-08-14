@@ -13,8 +13,12 @@
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "code-runner.executorMap": {
-    // 💡Windows와 Linux/Mac의 path 구분자 문제로, 디렉토리 변경을 직접하도록 설정
-    "python": "cd .venv && cd Scripts && python -u",
+    // 💡 OS 환경을 감지해서 Path 구분자를 바꿔주는 기능이 아직 없어서, 수동으로 바꿔줘야한다.
+    // 🪟 Windows
+    "python": ".venv\\Scripts\\python -u",
+    // 🐧 Linux/Mac
+    //"python": ".venv/Scripts/python -u",
   },
-  "code-runner.saveFileBeforeRun": true
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.enableAppInsights": false
 }
