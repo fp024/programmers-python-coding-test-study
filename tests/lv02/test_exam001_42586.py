@@ -2,7 +2,7 @@ import pytest
 from src.lv02.exam001_42586 import solution as solution_me
 
 # 공통 테스트 데이터
-TEST_CASES = [
+TEST_DATA_LIST = [
     {"progresses": [93, 30, 55], "speeds": [1, 30, 5], "expected": [2, 1]},
     {
         "progresses": [95, 90, 99, 99, 80, 99],
@@ -13,7 +13,7 @@ TEST_CASES = [
 
 
 # 나의 풀이 테스트
-@pytest.mark.parametrize("test_data", TEST_CASES)
+@pytest.mark.parametrize("test_data", TEST_DATA_LIST)
 def test_solution_me(test_data):
     """기본 테스트 케이스 검증"""
     result = solution_me(test_data["progresses"], test_data["speeds"])
