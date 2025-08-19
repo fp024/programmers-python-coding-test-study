@@ -18,8 +18,8 @@ def solution(want: list[str], number: list[int], discount: list[str]) -> int:
     for i in range(last_start_no):
         product_count_map = {}
         for j in range(i, i + total_amount):
-            product_count_map.setdefault(discount[j], 0)
-            product_count_map[discount[j]] += 1
+            k = discount[j]
+            product_count_map[k] = product_count_map.get(k, 0) + 1
         discount_slices.append(product_count_map)
 
     # 할인 정보 슬라이스 dict 배열
@@ -28,7 +28,7 @@ def solution(want: list[str], number: list[int], discount: list[str]) -> int:
     # Python에서는 dict 자체가 통체로 비교가 된다고 해서... 비교 대상 맵을 만들자!,
     expect_slice = {}
     for i, want_slice in enumerate(want):
-        expect_slice.setdefault(want_slice, number[i])
+        expect_slice[want_slice] = number[i]
 
     answer = 0
     for i, discount_slice in enumerate(discount_slices):
