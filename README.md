@@ -69,7 +69,7 @@ pre-commit
 다음 명령은 `requirements.in` 파일을 기반으로 **모든 하위 종속성까지 포함하고 버전을 고정한** `requirements.txt` 파일을 자동으로 생성한다.
 
 ```sh
-pip-compile requirements.in
+pip-compile --strip-extras requirements.in
 ```
 
 #### 4\. 라이브러리 설치
@@ -85,7 +85,7 @@ pip install -r requirements.txt
 기존 라이브러리를 최신 호환 버전으로 업데이트하려면, 다음 두 명령을 순서대로 실행함.
 
 ```sh
-pip-compile requirements.in  # requirements.txt를 최신 버전으로 업데이트
+pip-compile --strip-extras requirements.in  # requirements.txt를 최신 버전으로 업데이트
 pip install -r requirements.txt # 가상 환경의 라이브러리를 업데이트된 requirements.txt에 맞춰 설치/업데이트
 ```
 
