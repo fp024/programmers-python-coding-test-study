@@ -1,6 +1,6 @@
 ##################################################################################
 # 할인 행사 - 131127
-#   - https://school.programmers.co.kr/learn/courses/30/lessons/42586
+#   - https://school.programmers.co.kr/learn/courses/30/lessons/131127
 #
 ##################################################################################
 
@@ -31,7 +31,7 @@ def solution(want: list[str], number: list[int], discount: list[str]) -> int:
         expect_slice[want_slice] = number[i]
 
     answer = 0
-    for i, discount_slice in enumerate(discount_slices):
+    for discount_slice in discount_slices:
         if discount_slice == expect_slice:
             # 💡 제품을 모두 할인 받을 수 있는 회원 등록 날짜의 총 일 수 임을 고려하자!
             answer += 1
