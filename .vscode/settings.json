@@ -1,8 +1,11 @@
 {
   "python.testing.pytestArgs": [
-    "-s", // 💡 테스트 함수 내 print() 출력도 콘솔에 함께 보여줌 (stdout 표시)
-    "-vv", // 💡 각 테스트 항목의 이름을 자세히(verbose) 출력 (어떤 테스트가 통과/실패했는지 명확하게 표시됨)
-    "tests" // 💡 테스트가 들어 있는 폴더나 경로 지정 (여기서는 'tests/' 디렉터리 내 테스트 실행)
+    // 💡 테스트 함수 내 print() 출력도 콘솔에 함께 보여줌 (stdout 표시)
+    "-s",
+    // 💡 각 테스트 항목의 이름을 자세히(verbose) 출력 (어떤 테스트가 통과/실패했는지 명확하게 표시됨)
+    "-vv",
+    // 💡 테스트가 들어 있는 폴더나 경로 지정 (여기서는 'tests/' 디렉터리 내 테스트 실행)
+    "tests"
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
@@ -14,10 +17,10 @@
   },
   "code-runner.executorMap": {
     // 💡 OS 환경을 감지해서 Path 구분자를 바꿔주는 기능이 아직 없어서, 수동으로 바꿔줘야한다.
-    // 🪟 Windows
-    "python": ".venv\\Scripts\\python -u",
     // 🐧 Linux/Mac
     //"python": ".venv/Scripts/python -u",
+    // 🪟 Windows
+    "python": ".venv\\Scripts\\python -u"
   },
   "code-runner.saveFileBeforeRun": true,
   "code-runner.enableAppInsights": false
