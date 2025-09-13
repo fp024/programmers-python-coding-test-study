@@ -133,5 +133,5 @@ PyCharm에서도 그냥 저장시 액션에 등록해두면 바로 사용이 가
 pre-commit install
 ```
 
-* **세부 사항**: [pre-commit과\_black을\_활용한\_커밋\_전\_포맷팅.md](pre-commit과_black을_활용한_커밋_전_포맷팅.md)
+* **세부 사항**: [pre-commit과\_black을\_활용한\_커밋\_전\_포맷팅.md](docs/pre-commit과_black을_활용한_커밋_전_포맷팅.md)
 
