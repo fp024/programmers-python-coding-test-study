@@ -44,6 +44,12 @@
 
 #### `pip-tools`로 파이썬 의존성 관리하기
 
+#### 0\. ✨ `venv` 가상 환경 설치
+
+먼저 venv 환경을 생성하고 시작하자!
+
+* [venv환경\_만들기.md](docs/venv환경_만들기.md)
+
 #### 1\. `pip-tools` 설치
 
 먼저, `pip-tools`를 개발 환경의 가상 환경(.venv)에 설치함.
@@ -118,4 +124,14 @@ python -m pip install --upgrade pip
 이것도 위의 pip-tools 설명 부분에서  requirements.in 설정을 통해 설치가 되었다.
 
 PyCharm에서도 그냥 저장시 액션에 등록해두면 바로 사용이 가능함. 
+
+커밋할 때, Black으로 체크하도록 훅 설정을 등록 해두었는데, 
+
+현재 프로젝트는 기본 설정을 다 해둔 상태여서, 앞의 설정들을 모두 마쳤다면 다음 명령만 수행해주면 된다.
+
+```bash
+pre-commit install
+```
+
+* **세부 사항**: [pre-commit과\_black을\_활용한\_커밋\_전\_포맷팅.md](pre-commit과_black을_활용한_커밋_전_포맷팅.md)
 
