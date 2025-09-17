@@ -24,17 +24,17 @@ python -m venv 가상환경_폴더이름
 
 - `python`: 현재 시스템에 설치된 파이썬 실행 파일을 지칭한다.
 - `-m venv`: 파이썬 모듈 `venv`를 실행하라는 의미입니다. `venv`는 파이썬 표준 라이브러리에 포함되어 있어서 별도 설치 없이 사용할 수 있다.
-- `가상환경_폴더이름`: 생성될 가상 환경 디렉토리의 이름입니다. 관례적으로 `venv`, `.venv`, 또는 `env` 등으로 많이 사용합니다. 예를 들어 `venv`라고 하면 `my_project/venv/` 디렉토리가 생성된다.
+- `가상환경_폴더이름`: 생성될 가상 환경 디렉토리의 이름입니다. 관례적으로 `venv`, `.venv`, 또는 `env` 등으로 많이 사용합니다. 예를 들어 `.venv`라고 하면 `my_project/.venv/` 디렉토리가 생성된다.
 
 **예시:**
 
 Bash
 
 ```sh
-python -m venv venv
+python -m venv .venv
 ```
 
-이렇게 실행하면 현재 디렉토리 안에 `venv`라는 이름의 새 폴더가 생기고, 그 안에 독립적인 파이썬 환경과 `pip`가 설치된다.
+이렇게 실행하면 현재 디렉토리 안에 `.venv`라는 이름의 새 폴더가 생기고, 그 안에 독립적인 파이썬 환경과 `pip`가 설치된다.
 
 
 
@@ -50,7 +50,7 @@ python -m venv venv
   .\이름_원하는_가상환경_폴더\Scripts\Activate.ps1
   ```
 
-  **예시:** `.\venv\Scripts\Activate.ps1`
+  **예시:** `.\.venv\Scripts\Activate.ps1`
 
 - **Windows (Command Prompt - cmd):**
 
@@ -60,7 +60,7 @@ python -m venv venv
   가상환경_폴더이름\Scripts\activate.bat
   ```
 
-  **예시:** `venv\Scripts\activate.bat`
+  **예시:** `.venv\Scripts\activate.bat`
 
 - **Linux / Git Bash / macOS (Bash/Zsh):**
 
@@ -70,9 +70,9 @@ python -m venv venv
   source 가상환경_폴더이름/Scripts/activate
   ```
 
-  **예시:** `source venv/bin/activate`
+  **예시:** `source .venv/bin/activate`
 
-가상 환경이 성공적으로 활성화되면, 터미널 프롬프트 앞에 괄호 안에 가상 환경 이름이 나타난다. (예: `(venv) your_username@your_computer:~/my_project$`) 이제 이 터미널에서는 가상 환경에 설치된 파이썬과 라이브러리를 사용하게 된다.
+가상 환경이 성공적으로 활성화되면, 터미널 프롬프트 앞에 괄호 안에 가상 환경 이름이 나타난다. (예: `(.venv) your_username@your_computer:~/my_project$`) 이제 이 터미널에서는 가상 환경에 설치된 파이썬과 라이브러리를 사용하게 된다.
 
 
 
