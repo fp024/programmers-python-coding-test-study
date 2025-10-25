@@ -100,6 +100,9 @@ pip install -r requirements.txt # 가상 환경의 라이브러리를 업데이�
 python -m pip install --upgrade pip
 ```
 
+> 💡 pip 같은 경우는... 가상환경 내부, 가상환경 외부 모두 업그레이드를 따로 해주도록 하자!
+> 가상환경 외부에서는 기본 설치된 것이 pip 하나만 있음.
+
 
 
 
