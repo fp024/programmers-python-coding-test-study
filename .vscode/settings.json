@@ -9,7 +9,10 @@
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
+  // Microsoft Pyright 설정: VSCode
   "python.analysis.typeCheckingMode": "basic",
+  // Pyrefly 설정: Antigravity
+  "python.pyrefly.displayTypeErrors": "force-on",
   "editor.formatOnSave": true,
   "[python]": {
     "editor.tabSize": 4,
