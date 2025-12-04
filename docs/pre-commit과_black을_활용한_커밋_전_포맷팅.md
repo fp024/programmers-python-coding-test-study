@@ -219,7 +219,7 @@ pip show black
 ```yaml
 repos:
   - repo: https://github.com/psf/black
-    rev: 25.1.0  # pip 버전과 동일하게
+    rev: 25.1.0  # pip 버전과 동일하게, .venv/Scripts/pre-commit autoupdate를 해주면 최신으로 맞춰줌.
     hooks:
       - id: black
         language_version: python3
