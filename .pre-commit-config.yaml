@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/psf/black
-    rev: 25.1.0  # Black 최신 버전으로 업데이트
+    rev: 25.11.0  # Black 최신 버전으로 업데이트
     hooks:
       - id: black
         language_version: python3

@@ -93,10 +93,20 @@ pip install -r requirements.txt
 ```sh
 pip-compile --strip-extras requirements.in  # requirements.txt를 최신 버전으로 업데이트
 pip install -r requirements.txt # 가상 환경의 라이브러리를 업데이트된 requirements.txt에 맞춰 설치/업데이트
-.venv/Scripts/pre-commit autoupdate # pre-commit에 설정된 black의 버전업은 이 명령으로 가능함
+pre-commit autoupdate # pre-commit에 설정된 black의 버전업은 이 명령으로 가능함
 ```
 
+* `pre-commit autoupdate` : .pre-commit-config.yaml의 버전정보가 수정됨
+
+  ```
+  (.venv) C:\git\programmers-python-coding-test-study>pre-commit autoupdate
+  [https://github.com/psf/black] updating 25.1.0 -> 25.11.0
+  
+  (.venv) C:\git\programmers-python-coding-test-study>
+  ```
+
 #### 6\. pip 업그레이드
+
 ```sh
 python -m pip install --upgrade pip
 ```
