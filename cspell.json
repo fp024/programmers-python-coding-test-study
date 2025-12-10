@@ -8,7 +8,8 @@
     "/.gitignore",
     "/requirements.in",
     "/requirements.txt",
-    "/clean-cache-dir.bat"
+    "/clean-cache-dir.bat",
+    "/pytest.ini"
   ],
   "words": [
     "popleft",
