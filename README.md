@@ -126,7 +126,29 @@ python -m pip install --upgrade pip
 
 > 💡**Pytest는 기본 assert 문을 적극적으로 활용하는 것을 강력히 권장한다.**
 
+### pytest 실행 방법
 
+```bash
+# 모든 테스트 실행
+pytest
+
+# 특정 파일만 실행
+pytest tests/lv02/test_exam004_17684.py
+
+# 자세한 출력 (verbose)
+pytest tests/lv02/test_exam004_17684.py -v
+
+# 패턴 매칭으로 실행 (파일명/함수명에 'exam026' 포함)
+pytest -k exam004_17684
+
+# 특정 테스트 함수만 실행
+pytest tests/lv02/test_exam004_17684.py::test_solution_me
+
+# 가상환경에서 실행
+python -m pytest tests/lv02/test_exam004_17684.py -v
+```
+
+## 
 
 ## 코드 포맷터
 
