@@ -16,6 +16,7 @@
     "prac",
     "Pyrefly",
     "pytest",
+    "SonarQube",
     "venv"
   ],
   "ignoreWords": [],
