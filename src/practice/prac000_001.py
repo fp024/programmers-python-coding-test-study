@@ -13,6 +13,7 @@ def pre_order_str(nodes: list[int]) -> str:
     root_idx = 0
     stack = [root_idx]
     result = ""
+    node_length = len(nodes)
 
     while len(stack) > 0:
         # P: 부모에 먼저 방문
@@ -22,10 +23,10 @@ def pre_order_str(nodes: list[int]) -> str:
         right_child_idx = current_node_idx * 2 + 2
         left_child_idx = current_node_idx * 2 + 1
         # R: 스택이 LIFO이므로 R을 먼저 넣는다.
-        if len(nodes) > right_child_idx:
+        if right_child_idx < node_length:
             stack.append(right_child_idx)
         # L: 스택이 LIFO이므로 L을 나중에 넣는다.
-        if len(nodes) > left_child_idx:
+        if left_child_idx < node_length:
             stack.append(left_child_idx)
 
     return result[:-1]
@@ -44,6 +45,7 @@ def in_order_str(nodes: list[int]) -> str:
     root_idx = 0
     stack = [StackFrame(root_idx, False)]
     result = ""
+    node_length = len(nodes)
 
     while len(stack) > 0:
         current_node = stack.pop()
@@ -53,14 +55,14 @@ def in_order_str(nodes: list[int]) -> str:
         else:
             # R:
             right_child_idx = current_node.node_idx * 2 + 2
-            if len(nodes) > right_child_idx:
+            if right_child_idx < node_length:
                 stack.append(StackFrame(right_child_idx, False))
             # P:
             stack.append(StackFrame(current_node.node_idx, True))
 
             # L:
             left_child_idx = current_node.node_idx * 2 + 1
-            if len(nodes) > left_child_idx:
+            if left_child_idx < node_length:
                 stack.append(StackFrame(left_child_idx, False))
 
     return result[:-1]
@@ -72,6 +74,7 @@ def post_order_str(nodes: list[int]) -> str:
     root_idx = 0
     stack = [StackFrame(root_idx, False)]
     result = ""
+    node_length = len(nodes)
 
     while len(stack) > 0:
         current_node = stack.pop()
@@ -84,12 +87,12 @@ def post_order_str(nodes: list[int]) -> str:
 
             # R:
             right_child_idx = current_node.node_idx * 2 + 2
-            if len(nodes) > right_child_idx:
+            if right_child_idx < node_length:
                 stack.append(StackFrame(right_child_idx, False))
 
             # L:
             left_child_idx = current_node.node_idx * 2 + 1
-            if len(nodes) > left_child_idx:
+            if left_child_idx < node_length:
                 stack.append(StackFrame(left_child_idx, False))
 
     return result[:-1]
@@ -101,7 +104,6 @@ def solution(nodes: list[int]) -> list[str]:
 
 if __name__ == "__main__":
     print(solution([1, 2, 3, 4, 5, 6, 7]))
-
 
 ### 검토 ###
 #
