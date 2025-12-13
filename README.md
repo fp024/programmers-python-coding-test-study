@@ -148,7 +148,7 @@ pytest tests/lv02/test_exam004_17684.py::test_solution_me
 python -m pytest tests/lv02/test_exam004_17684.py -v
 ```
 
-## 
+
 
 ## 코드 포맷터
 
