@@ -171,3 +171,17 @@ pre-commit install
 
 * **세부 사항**: [pre-commit과\_black을\_활용한\_커밋\_전\_포맷팅.md](docs/pre-commit과_black을_활용한_커밋_전_포맷팅.md)
 
+### 특정 코드 블록에서 Black 포멧팅을 무시하기
+
+특정 코드 블록에서 Black 포멧팅을 무시하고 싶을 때는 다음 주석을 사용:
+
+```python
+# fmt: off
+# 이 사이의 코드는 Black이 포멧팅하지 않음
+matrix = [
+    [1,  2,  3,  4],
+    [5,  6,  7,  8],
+    [9, 10, 11, 12],
+]
+# fmt: on
+```
