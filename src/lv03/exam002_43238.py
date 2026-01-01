@@ -8,6 +8,7 @@
 def solution(n: int, times: list[int]) -> int:
     left = min(times)  # 1명을 처리할 수 있는 최소 시간으로 초기값 설정
     right = n * max(times)  # 모든 사람을 처리할 수 있는 최대 시간으로 초기값 설정
+    answer = right  # 최대 값으로 초기화 (안전장치)
 
     while left <= right:
         mid = (left + right) // 2  # 중간 시간 값 계산
@@ -17,9 +18,10 @@ def solution(n: int, times: list[int]) -> int:
         if count < n:  # 시간이 부족함, 더 긴 시간 필요
             left = mid + 1
         else:  # 시간이 충분함, 더 짧은 시간 시도
+            answer = mid  # 💡 "이 시간이면 n명 이상 처리 가능", → 조건 만족! 더 짧은 시간도 시도해보자!
             right = mid - 1
 
-    return left
+    return answer
 
 
 # cspell:disable
