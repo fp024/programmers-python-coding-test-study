@@ -18,6 +18,10 @@
     "editor.tabSize": 4,
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "[toml]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
   "code-runner.executorMap": {
     // 💡 OS 환경을 감지해서 Path 구분자를 바꿔주는 기능이 아직 없어서, 수동으로 바꿔줘야한다.
     // 🐧 Linux/Mac
