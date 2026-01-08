@@ -1,0 +1,12 @@
+[project]
+name = "programmers-python-coding-test-study"
+version = "0.1.0"
+description = "프로그래머스 코딩 테스트 스터디"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "black>=25.1.0",
+    "jupyter>=1.1.1",
+    "pre-commit>=4.2.0",
+    "pytest>=8.4.1",
+]

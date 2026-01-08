@@ -34,85 +34,125 @@
 
 
 
-## 디펜던시 관리자 (pip)
+## 디펜던시 관리자 (uv)
 
-[Poetry](https://github.com/python-poetry/poetry)나 [PDM](https://github.com/pdm-project/pdm)가 더 나은 것 같은데, 일단은 추가 설치없이 바로 사용할 수 있는 [pip](https://github.com/pypa/pip)로 사용해보자
+[uv](https://github.com/astral-sh/uv)는 Rust로 작성된 초고속 Python 패키지 관리자이다. pip/pip-tools를 대체하며, 락 파일 기반으로 재현 가능한 환경을 제공한다.
 
-먼저 pip만을 사용하는 것에 비해 향샹된 기능을 제공하는 pip-tools를 설치한다.
+> 💡 기존 pip/pip-tools 가이드는 [README-2026-01-09.md](docs/history/README-2026-01-09.md)에 보관.
 
 
-
-#### `pip-tools`로 파이썬 의존성 관리하기
-
-#### 0\. ✨ `venv` 가상 환경 설치
-
-먼저 venv 환경을 생성하고 시작하자!
-
-* [venv환경\_만들기.md](docs/venv환경_만들기.md)
-
-#### 1\. `pip-tools` 설치
-
-먼저, `pip-tools`를 개발 환경의 가상 환경(.venv)에 설치함.
+### uv 설치
 
 ```sh
-pip install pip-tools
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-#### 2\. `requirements.in` 파일 생성
 
-프로젝트의 \*\*최상위 종속성(Top-level dependencies)\*\*만 `requirements.in` 파일에 기록하면된다. 이곳에 직접 설치하고 싶은 패키지들만 나열하면 됨.
+### 프로젝트 구조
+
+```
+pyproject.toml   ← 의존성 선언 (npm의 package.json과 유사)
+uv.lock          ← 잠금 파일 (npm의 package-lock.json과 유사, Git 커밋 권장)
+.python-version  ← Python 버전 지정
+.venv/           ← 가상환경 (uv sync 시 자동 생성)
+```
+
+
+### 기본 명령
+
+#### 1. 의존성 동기화 (설치)
 
 ```sh
-# requirements.in
-pytest
-black
-jupyter
-pre-commit
+# pyproject.toml + uv.lock 기반으로 .venv 생성/동기화
+uv sync
+
+# 캐시 재검증하며 동기화
+uv sync --refresh
 ```
 
-#### 3\. `requirements.txt` 파일 생성
-
-다음 명령은 `requirements.in` 파일을 기반으로 **모든 하위 종속성까지 포함하고 버전을 고정한** `requirements.txt` 파일을 자동으로 생성한다.
+#### 2. 패키지 추가/제거
 
 ```sh
-pip-compile --strip-extras requirements.in
+# 패키지 추가 (pyproject.toml에 자동 기록)
+uv add <패키지명>
+
+# 패키지 제거
+uv remove <패키지명>
 ```
 
-#### 4\. 라이브러리 설치
-
-생성된 `requirements.txt` 파일을 이용해 필요한 모든 라이브러리를 가상 환경에 설치함.
+#### 3. 락 파일 갱신
 
 ```sh
-pip install -r requirements.txt
+# uv.lock 갱신 (최신 호환 버전으로)
+uv lock --refresh
 ```
 
-#### 5\. 라이브러리 업데이트
-
-기존 라이브러리를 최신 호환 버전으로 업데이트하려면, 다음 두 명령을 순서대로 실행함.
+#### 4. 캐시 관리
 
 ```sh
-pip-compile --strip-extras requirements.in  # requirements.txt를 최신 버전으로 업데이트
-pip install -r requirements.txt # 가상 환경의 라이브러리를 업데이트된 requirements.txt에 맞춰 설치/업데이트
-pre-commit autoupdate # pre-commit에 설정된 black의 버전업은 이 명령으로 가능함
+# 캐시 비우기
+uv cache clean
+
+# 캐시 위치 확인
+uv cache dir
 ```
 
-* `pre-commit autoupdate` : .pre-commit-config.yaml의 버전정보가 수정됨
-
-  ```
-  (.venv) C:\git\programmers-python-coding-test-study>pre-commit autoupdate
-  [https://github.com/psf/black] updating 25.1.0 -> 25.11.0
-  
-  (.venv) C:\git\programmers-python-coding-test-study>
-  ```
-
-#### 6\. pip 업그레이드
+#### 5. pre-commit 훅 버전 업데이트
 
 ```sh
-python -m pip install --upgrade pip
+pre-commit autoupdate
 ```
 
-> 💡 pip 같은 경우는... 가상환경 내부, 가상환경 외부 모두 업그레이드를 따로 해주도록 하자!
-> 가상환경 외부에서는 기본 설치된 것이 pip 하나만 있음.
+
+### ⚠️ Windows 하드링크 이슈
+
+uv는 성능을 위해 캐시에서 venv로 하드링크를 사용한다. 그런데 **하드링크는 같은 물리 드라이브에서만 가능**하다.
+
+**증상**: 캐시(C:)와 프로젝트(G: 등 다른 드라이브)가 다르면 경고 발생 후 복사로 대체됨.
+
+| 링크 방식 | 드라이브 제한 | 권한 요구 |
+|-----------|---------------|-----------|
+| hardlink (기본) | 같은 드라이브만 | 없음 (일반 사용자 OK) |
+| symlink | **드라이브 달라도 가능** | 개발자 모드 또는 gpedit 권한 추가 필요 (*) |
+| copy | 제한 없음 | 없음 |
+
+> (*) **symlink 권한 설정**: Windows는 기본적으로 관리자만 심볼릭 링크 생성 가능.  
+> 일반 사용자는 다음 중 하나 필요:
+>
+> - **개발자 모드 활성화**: 설정 → 개발자용 → 개발자 모드 켜기
+> - **gpedit.msc**: 
+>   - `Computer Configuration` → `Windows Settings` → 
+>     `Security Settings` → `Local Policies` → `User Rights Assignment`
+>     - `Create symbolic links`에서 로그인 유저 추가
+
+**해결책 (택1)**:
+
+```cmd
+:: 방법 1: 캐시를 프로젝트와 같은 드라이브로 이동
+mkdir G:\uv-cache
+setx UV_CACHE_DIR "G:\uv-cache"
+uv cache clean
+uv sync --refresh
+
+:: 방법 2: 심볼릭 링크 사용 (드라이브 달라도 OK, 권한 설정 필요)
+setx UV_LINK_MODE "symlink"
+
+:: 방법 3: 복사 모드 사용 (속도 약간 느림, 권한 이슈 없음)
+setx UV_LINK_MODE "copy"
+```
+
+또는 `pyproject.toml`에 프로젝트별 설정:
+
+```toml
+[tool.uv]
+link-mode = "symlink"  # 또는 "copy"
+```
+
+> 💡 환경변수 설정 후 VS Code/터미널 재시작 필요
 
 
 
@@ -157,7 +197,7 @@ python -m pytest tests/lv02/test_exam004_17684.py -v
 
 [Google Java Format](https://github.com/google/google-java-format) 처럼 사용자 커스터마이징 없이 알아서 해주는 강제 포멧터이다. 👍
 
-이것도 위의 pip-tools 설명 부분에서  requirements.in 설정을 통해 설치가 되었다.
+pyproject.toml의 dependencies에 포함되어 있어 `uv sync` 시 자동 설치된다.
 
 PyCharm에서도 그냥 저장시 액션에 등록해두면 바로 사용이 가능함. 
 

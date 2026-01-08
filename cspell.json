@@ -9,13 +9,20 @@
     "/requirements.in",
     "/requirements.txt",
     "/clean-cache-dir.bat",
-    "/pytest.ini"
+    "/pytest.ini",
+    "/uv.lock",
+    "/.python-version",
+    "/pyproject.toml"
   ],
   "words": [
+    "gpedit",
+    "hardlink",
     "popleft",
     "prac",
+    "pyproject",
     "Pyrefly",
     "pytest",
+    "setx",
     "SonarQube",
     "venv"
   ],

@@ -1,5 +1,0 @@
-# requirements.in
-pytest
-black
-jupyter
-pre-commit
