@@ -196,7 +196,27 @@ python -m pytest tests/lv02/test_exam004_17684.py -v
 
 
 
-## 코드 포맷터
+## 코드 포맷터 & 자동화 (pre-commit)
+
+`pre-commit`을 사용하여 커밋 시 코드를 자동 포맷팅하고, 푸시 전 테스트를 수행합니다.
+
+### 1. 훅 설치
+
+```bash
+# 기본 훅 설치 (Commit 시 Black 실행)
+uv run pre-commit install
+
+# pre-push 훅 설치 (Push 시 Pytest 실행)
+uv run pre-commit install --hook-type pre-push
+```
+
+### 2. 설정 내용 ([`.pre-commit-config.yaml`](.pre-commit-config.yaml))
+
+- **commit 단계**: `black`, `black-jupyter` 실행 (코드 포맷팅)
+- **push 단계**: `pytest` 실행 (전체 테스트 통과 시에만 푸시 허용)
+
+> 💡 테스트를 건너뛰고 강제 푸시하려면: `git push --no-verify`
+
 
 * Black
   * https://github.com/psf/black
