@@ -212,6 +212,25 @@ uv run pre-commit install --hook-type pre-push
 
 ### 2. 설정 내용 ([`.pre-commit-config.yaml`](.pre-commit-config.yaml))
 
+```yaml
+repos:
+  - repo: https://github.com/psf/black
+    rev: 25.12.0
+    hooks:
+      - id: black
+      - id: black-jupyter
+
+  # pytest는 로컬 명령이므로 repo: local로 분리
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest (pre-push)
+        entry: uv run pytest -vv -s
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+```
+
 - **commit 단계**: `black`, `black-jupyter` 실행 (코드 포맷팅)
 - **push 단계**: `pytest` 실행 (전체 테스트 통과 시에만 푸시 허용)
 
