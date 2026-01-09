@@ -72,6 +72,12 @@ uv sync
 
 # 캐시 재검증하며 동기화
 uv sync --refresh
+
+# 락 최신화 후 바로 설치
+uv sync --upgrade
+
+# CI/엄격 모드: 락만 신뢰(락과 불일치 시 실패)
+uv sync --locked
 ```
 
 #### 2. 패키지 추가/제거
