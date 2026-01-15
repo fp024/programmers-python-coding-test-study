@@ -81,7 +81,7 @@ uv sync --upgrade
 ### 4. pre-commit 훅 버전 업데이트
 
 ```sh
-pre-commit autoupdate
+uv run pre-commit autoupdate
 ```
 
 
@@ -147,22 +147,22 @@ link-mode = "symlink"  # 또는 "copy"
 
 ```bash
 # 모든 테스트 실행
-pytest
+uv run pytest
 
 # 특정 파일만 실행
-pytest tests/lv02/test_exam004_17684.py
+uv run pytest tests/lv02/test_exam004_17684.py
 
 # 자세한 출력 (verbose)
-pytest tests/lv02/test_exam004_17684.py -v
+uv run pytest tests/lv02/test_exam004_17684.py -v
 
 # 패턴 매칭으로 실행 (파일명/함수명에 'exam026' 포함)
-pytest -k exam004_17684
+uv run pytest -k exam004_17684
 
 # 특정 테스트 함수만 실행
-pytest tests/lv02/test_exam004_17684.py::test_solution_me
+uv run pytest tests/lv02/test_exam004_17684.py::test_solution_me
 
 # 가상환경에서 실행
-python -m pytest tests/lv02/test_exam004_17684.py -v
+uv run python -m pytest tests/lv02/test_exam004_17684.py -v
 ```
 
 
