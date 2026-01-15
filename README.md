@@ -40,8 +40,9 @@
 
 > 💡 기존 pip/pip-tools 가이드는 [README-2026-01-09.md](docs/history/README-2026-01-09.md)에 보관.
 
+### 1. 최초 설치
 
-### uv 설치
+먼저 uv 도구를 설치해준다.
 
 ```sh
 # Windows (PowerShell)
@@ -51,63 +52,33 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-
-### 프로젝트 구조
-
-```
-pyproject.toml   ← 의존성 선언 (npm의 package.json과 유사)
-uv.lock          ← 잠금 파일 (npm의 package-lock.json과 유사, Git 커밋 권장)
-.python-version  ← Python 버전 지정
-.venv/           ← 가상환경 (uv sync 시 자동 생성)
-```
-
-
-### 기본 명령
-
-#### 1. 의존성 동기화 (설치)
+이후 프로젝트 루트에서 다음 명령어로 가상환경(`.venv`) 생성 및 패키지를 전체 설치(동기화)한다.
 
 ```sh
-# pyproject.toml + uv.lock 기반으로 .venv 생성/동기화
 uv sync
-
-# 캐시 재검증하며 동기화
-uv sync --refresh
-
-# 락 최신화 후 바로 설치
-uv sync --upgrade
-
-# CI/엄격 모드: 락만 신뢰(락과 불일치 시 실패)
-uv sync --locked
 ```
 
-#### 2. 패키지 추가/제거
+### 2. 라이브러리 추가/제거
+
+새로운 라이브러리를 추가하면 `pyproject.toml`과 `uv.lock`에 자동으로 반영된다.
 
 ```sh
-# 패키지 추가 (pyproject.toml에 자동 기록)
+# 패키지 추가
 uv add <패키지명>
 
 # 패키지 제거
 uv remove <패키지명>
 ```
 
-#### 3. 락 파일 갱신
+### 3. 라이브러리 업데이트
+
+전체 라이브러리를 최신 버전으로 업데이트한다.
 
 ```sh
-# uv.lock 갱신 (최신 호환 버전으로)
-uv lock --refresh
+uv sync --upgrade
 ```
 
-#### 4. 캐시 관리
-
-```sh
-# 캐시 비우기
-uv cache clean
-
-# 캐시 위치 확인
-uv cache dir
-```
-
-#### 5. pre-commit 훅 버전 업데이트
+### 4. pre-commit 훅 버전 업데이트
 
 ```sh
 pre-commit autoupdate
@@ -196,9 +167,9 @@ python -m pytest tests/lv02/test_exam004_17684.py -v
 
 
 
-## 코드 포맷터 & 자동화 (pre-commit)
+## 코드 포매터 & 자동화 (pre-commit)
 
-`pre-commit`을 사용하여 커밋 시 코드를 자동 포맷팅하고, 푸시 전 테스트를 수행합니다.
+`pre-commit`을 사용하여 커밋 시 코드를 자동 포매팅하고, 푸시 전 테스트를 수행합니다.
 
 ### 1. 훅 설치
 
@@ -231,7 +202,7 @@ repos:
         stages: [pre-push]
 ```
 
-- **commit 단계**: `black`, `black-jupyter` 실행 (코드 포맷팅)
+- **commit 단계**: `black`, `black-jupyter` 실행 (코드 포매팅)
 - **push 단계**: `pytest` 실행 (전체 테스트 통과 시에만 푸시 허용)
 
 > 💡 테스트를 건너뛰고 강제 푸시하려면: `git push --no-verify`
@@ -240,29 +211,21 @@ repos:
 * Black
   * https://github.com/psf/black
 
-[Google Java Format](https://github.com/google/google-java-format) 처럼 사용자 커스터마이징 없이 알아서 해주는 강제 포멧터이다. 👍
+[Google Java Format](https://github.com/google/google-java-format) 처럼 사용자 커스터마이징 없이 알아서 해주는 강제 포매터이다. 👍
 
-pyproject.toml의 dependencies에 포함되어 있어 `uv sync` 시 자동 설치된다.
+`pyproject.toml`의 dependencies에 포함되어 있어 `uv sync` 시 자동 설치된다.
 
-PyCharm에서도 그냥 저장시 액션에 등록해두면 바로 사용이 가능함. 
-
-커밋할 때, Black으로 체크하도록 훅 설정을 등록 해두었는데, 
-
-현재 프로젝트는 기본 설정을 다 해둔 상태여서, 앞의 설정들을 모두 마쳤다면 다음 명령만 수행해주면 된다.
-
-```bash
-pre-commit install
-```
+PyCharm에서도 저장 시 액션에 등록하여 바로 사용 가능하다.
 
 * **세부 사항**: [pre-commit과\_black을\_활용한\_커밋\_전\_포맷팅.md](docs/pre-commit과_black을_활용한_커밋_전_포맷팅.md)
 
-### 특정 코드 블록에서 Black 포멧팅을 무시하기
+### 특정 코드 블록에서 Black 포매팅을 무시하기
 
-특정 코드 블록에서 Black 포멧팅을 무시하고 싶을 때는 다음 주석을 사용:
+특정 코드 블록에서 Black 포매팅을 무시하고 싶을 때는 다음 주석을 사용:
 
 ```python
 # fmt: off
-# 이 사이의 코드는 Black이 포멧팅하지 않음
+# 이 사이의 코드는 Black이 포매팅하지 않음
 matrix = [
     [1,  2,  3,  4],
     [5,  6,  7,  8],
