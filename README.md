@@ -174,11 +174,12 @@ python -m pytest tests/lv02/test_exam004_17684.py -v
 ### 1. 훅 설치
 
 ```bash
-# 기본 훅 설치 (Commit 시 Black 실행)
-uv run pre-commit install
+# 방법 1: 현재 README처럼 각각 실행 (권장)
+uv run pre-commit install                     # 커밋 시 실행될 훅 설치 (Black 등)
+uv run pre-commit install --hook-type pre-push # 푸시 시 실행될 훅 설치 (Pytest)
 
-# pre-push 훅 설치 (Push 시 Pytest 실행)
-uv run pre-commit install --hook-type pre-push
+# 방법 2: 한 번에 설치
+uv run pre-commit install --hook-type pre-commit --hook-type pre-push
 ```
 
 ### 2. 설정 내용 ([`.pre-commit-config.yaml`](.pre-commit-config.yaml))
