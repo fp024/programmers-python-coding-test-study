@@ -5,29 +5,29 @@
 ################################################################################
 
 
-def find(parents: list[int], x_node: int) -> int:
-    if parents[x_node] == x_node:
-        return x_node
+def find(parents: list[int], node: int) -> int:
+    if parents[node] == node:
+        return node
 
     # 💡 경로 압축을 동시에 수행
-    parents[x_node] = find(parents, parents[x_node])
-    return parents[x_node]
+    parents[node] = find(parents, parents[node])
+    return parents[node]
 
 
-def union(parents: list[int], ranks: list[int], x_node: int, y_node: int) -> bool:
-    x_root = find(parents, x_node)
-    y_root = find(parents, y_node)
+def union(parents: list[int], ranks: list[int], a_node: int, b_node: int) -> bool:
+    a_root = find(parents, a_node)
+    b_root = find(parents, b_node)
 
-    if x_root == y_root:
+    if a_root == b_root:
         return False
 
-    if ranks[x_root] > ranks[y_root]:
-        parents[y_root] = x_root
-    elif ranks[x_root] < ranks[y_root]:
-        parents[x_root] = y_root
+    if ranks[a_root] > ranks[b_root]:
+        parents[b_root] = a_root
+    elif ranks[a_root] < ranks[b_root]:
+        parents[a_root] = b_root
     else:
-        parents[y_root] = x_root
-        ranks[x_root] += 1
+        parents[b_root] = a_root
+        ranks[a_root] += 1
     return True
 
 
@@ -45,9 +45,9 @@ def solution(n: int, costs: list[list[int]]) -> int:
     edge_count = 0
     min_cost = 0
 
-    for x_node, y_node, cost in sorted_costs:
+    for a_node, b_node, cost in sorted_costs:
         # x, y가 서로 다른 집합에 속하면 집합 합치기
-        if union(parents, ranks, x_node, y_node):
+        if union(parents, ranks, a_node, b_node):
             # 현재 간선의 비용을 최소 비용에 추가
             min_cost += cost
             # 포함된 간선의 개수 증가
