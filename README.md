@@ -84,6 +84,16 @@ uv sync --upgrade
 uv run pre-commit autoupdate
 ```
 
+### 5. uv 자체 업데이트
+
+uv 도구 자체를 최신 버전으로 업데이트한다.
+
+```sh
+uv self update
+```
+
+> 💡 `uv sync --upgrade` 실행 시 `.venv` 폴더 접근 오류가 발생하면 [uv\_sync\_오류\_해결방법.md](docs/uv_sync_오류_해결방법.md) 참고.
+
 
 ### ⚠️ Windows 하드링크 이슈
 

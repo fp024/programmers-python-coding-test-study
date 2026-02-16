@@ -22,6 +22,7 @@
     "pyproject",
     "Pyrefly",
     "pytest",
+    "pythonw",
     "setx",
     "SonarQube",
     "venv"
