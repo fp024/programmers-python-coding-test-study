@@ -16,8 +16,8 @@ class Node:
     id: int
     x: int
     y: int
-    left: "Node" = None
-    right: "Node" = None
+    left: "Node | None" = None
+    right: "Node | None" = None
 
 
 def insert_node(root, new_node):
